@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
+from app.api.v1.reports import router as reports_router
 
 from app.db.session import engine
 
@@ -10,6 +11,7 @@ app = FastAPI(
     version="0.1.0",
 )
 
+app.include_router(reports_router)
 
 @app.get("/health", tags=["Health"])
 def health_check() -> dict[str, str]:
