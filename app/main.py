@@ -11,7 +11,7 @@ app = FastAPI(
     version="0.1.0",
 )
 
-app.include_router(reports_router)
+app.include_router(reports_router, prefix="/api/v1")
 
 @app.get("/health", tags=["Health"])
 def health_check() -> dict[str, str]:
@@ -19,7 +19,6 @@ def health_check() -> dict[str, str]:
         "status": "ok",
         "service": "ridevo-api",
     }
-
 
 @app.get("/ready", tags=["Health"])
 def readiness_check() -> dict[str, str]:
